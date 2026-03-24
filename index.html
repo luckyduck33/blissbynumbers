@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bliss by Numbers — Revenue Clarity for Service Practices</title>
+  <meta name="description" content="Bliss by Numbers helps service-based practices uncover where revenue is slipping through the cracks, then builds elegant systems for lead response, rebooking, retention, and follow-through.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================================
+       RESET & CUSTOM PROPERTIES
+       ========================================================= */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream:       #F7F2E9;
+      --parchment:   #EDE6D6;
+      --warm-white:  #FAF7F2;
+      --sage:        #8A9E88;
+      --sage-muted:  #B5C6B3;
+      --olive:       #5C6E4A;
+      --clay:        #B87558;
+      --clay-light:  #D4987A;
+      --espresso:    #252019;
+      --forest:      #2E3B2A;
+      --putty:       #C4BDB0;
+      --stone:       #9B9289;
+      --border:      rgba(196,189,176,0.45);
+      --shadow-sm:   0 2px 12px rgba(37,32,25,0.06);
+      --shadow-md:   0 6px 40px rgba(37,32,25,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--espresso);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* =========================================================
+       TYPOGRAPHY
+       ========================================================= */
+    h1, h2, h3, h4, .serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.13;
+      letter-spacing: -0.01em;
+    }
+    h1 { font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 300; }
+    h2 { font-size: clamp(2rem, 3.5vw, 3rem);   font-weight: 300; }
+    h3 { font-size: clamp(1.35rem, 2.5vw, 1.8rem); font-weight: 400; }
+    p  { font-weight: 300; }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay);
+    }
+
+    /* =========================================================
+       LAYOUT HELPERS
+       ========================================================= */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+    .section    { padding: 8rem 0; }
+    .section-sm { padding: 5rem 0; }
+    .divider    { width: 36px; height: 1px; background: var(--clay); margin: 1.5rem 0; }
+
+    /* =========================================================
+       PAGE ROUTING
+       ========================================================= */
+    .page { display: none; animation: pageFade .35s ease; }
+    .page.active { display: block; }
+    @keyframes pageFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* =========================================================
+       NAVIGATION
+       ========================================================= */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(247,242,233,0.93);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.3rem 4rem;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 500; letter-spacing: 0.02em;
+      color: var(--espresso); text-decoration: none; cursor: pointer;
+    }
+    .nav-logo span { color: var(--clay); font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.75rem; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--espresso); text-decoration: none;
+      opacity: 0.55; transition: opacity 0.2s; cursor: pointer;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--cream);
+      background: var(--espresso); padding: 0.72rem 1.65rem;
+      border-radius: 1px; text-decoration: none; cursor: pointer;
+      transition: background 0.25s, transform 0.15s; display: inline-block;
+    }
+    .nav-cta:hover { background: var(--clay); transform: translateY(-1px); }
+
+    /* Mobile hamburger */
+    .nav-hamburger {
+      display: none; cursor: pointer; flex-direction: column;
+      gap: 5px; background: none; border: none; padding: 4px;
+    }
+    .nav-hamburger span { display: block; width: 22px; height: 1px; background: var(--espresso); transition: 0.2s; }
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+    .btn {
+      display: inline-block; text-decoration: none; cursor: pointer;
+      transition: all 0.2s; border: none; outline: none; font-family: 'DM Sans', sans-serif;
+    }
+    .btn-dark {
+      background: var(--espresso); color: var(--cream);
+      padding: 1rem 2.2rem; font-size: 0.76rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; border-radius: 1px;
+    }
+    .btn-dark:hover { background: var(--clay); transform: translateY(-1px); }
+    .btn-clay {
+      background: var(--clay); color: var(--cream);
+      padding: 1rem 2.2rem; font-size: 0.76rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; border-radius: 1px;
+    }
+    .btn-clay:hover { background: var(--espresso); transform: translateY(-1px); }
+    .btn-ghost {
+      color: var(--espresso); font-size: 0.76rem; font-weight: 400;
+      letter-spacing: 0.05em; opacity: 0.6;
+      border-bottom: 1px solid rgba(37,32,25,0.3); padding-bottom: 2px;
+    }
+    .btn-ghost:hover { opacity: 1; }
+    .btn-outline-light {
+      color: var(--cream); font-size: 0.76rem; font-weight: 400;
+      letter-spacing: 0.05em; opacity: 0.65;
+      border-bottom: 1px solid rgba(247,242,233,0.4); padding-bottom: 2px;
+    }
+    .btn-outline-light:hover { opacity: 1; }
+
+    /* =========================================================
+       HERO SECTION
+       ========================================================= */
+    .hero {
+      min-height: 100vh; display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 5rem;
+      padding: 9rem 4rem 5rem;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .hero-eyebrow { margin-bottom: 1.6rem; }
+    .hero-headline {
+      font-family: 'Plus Jakarta Sans', 'DM Sans', sans-serif;
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem); font-weight: 800;
+      line-height: 1.08; margin-bottom: 1.75rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-headline .accent { color: var(--clay); font-style: italic; }
+    .hero-subhead {
+      font-size: 1rem; line-height: 1.82; opacity: 0.68;
+      max-width: 480px; margin-bottom: 2.75rem;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+
+    /* Hero visual canvas */
+    .hero-visual {
+      position: relative; height: 560px; border-radius: 3px;
+      overflow: hidden; background: var(--parchment);
+      transition: background 1.5s ease;
+    }
+    .hero-visual.calm { background: #EAE4D8; }
+    .hero-visual-inner { position: absolute; inset: 0; }
+
+    /* Column headers (appear after organize) */
+    .anim-col-header {
+      position: absolute; font-size: 0.58rem; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone);
+      opacity: 0; transition: opacity 0.8s ease;
+      pointer-events: none; top: 24px;
+    }
+    .anim-col-header.show { opacity: 1; }
+
+    /* Individual animated cards */
+    .anim-card {
+      position: absolute;
+      background: var(--warm-white);
+      border-radius: 2px;
+      padding: 0.6rem 0.85rem;
+      box-shadow: 0 2px 10px rgba(37,32,25,0.09);
+      width: 172px;
+      border-left: 2px solid var(--clay);
+      pointer-events: none;
+      will-change: transform, left, top, opacity;
+    }
+    .anim-card.type-booking  { border-left-color: var(--sage); }
+    .anim-card.type-revenue  { border-left-color: var(--olive); }
+    .anim-card-label {
+      font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--stone); margin-bottom: 0.18rem;
+    }
+    .anim-card-text {
+      font-size: 0.69rem; color: var(--espresso);
+      opacity: 0.78; line-height: 1.4;
+    }
+
+    /* Calm indicator circle */
+    .anim-calm-ring {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(234,228,216,0.96);
+      opacity: 0; pointer-events: none;
+      transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: inherit;
+    }
+    .anim-calm-ring.show { opacity: 1; pointer-events: auto; }
+    .anim-calm-cta {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.75rem; padding: 3rem 2.5rem; text-align: center;
+      max-width: 380px;
+    }
+    .anim-calm-eyebrow {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--sage);
+    }
+    .anim-calm-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-weight: 300;
+      font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+      color: var(--forest); line-height: 1.25;
+    }
+    .anim-calm-divider {
+      width: 36px; height: 1px; background: var(--sage-muted); opacity: 0.5;
+    }
+    .anim-calm-btn {
+      font-size: 0.78rem !important; letter-spacing: 0.08em !important;
+      padding: 0.85rem 1.8rem !important;
+    }
+
+    /* =========================================================
+       EMPATHY SECTION
+       ========================================================= */
+    .empathy { background: var(--parchment); }
+    .empathy-inner { max-width: 760px; }
+    .empathy-headline { margin: 1.5rem 0 2rem; }
+    .empathy-body { font-size: 1rem; line-height: 1.88; opacity: 0.72; }
+    .empathy-body p + p { margin-top: 1.25rem; }
+
+    /* =========================================================
+       QUIET COST SECTION
+       ========================================================= */
+    .quiet-cost { background: var(--cream); }
+    .quiet-cost-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; margin-bottom: 4rem; align-items: end;
+    }
+    .quiet-cost-intro { font-size: 0.95rem; line-height: 1.82; opacity: 0.65; }
+    .cost-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .cost-card {
+      background: var(--warm-white); border: 1px solid var(--border);
+      border-radius: 2px; padding: 2rem 1.75rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .cost-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .cost-card-label {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--clay); margin-bottom: 0.75rem;
+    }
+    .cost-card h3 { font-size: 1.25rem; margin-bottom: 0.6rem; }
+    .cost-card p { font-size: 0.86rem; line-height: 1.75; opacity: 0.65; }
+
+    /* =========================================================
+       REVENUE MATH SECTION
+       ========================================================= */
+    .revenue-math { background: var(--espresso); color: var(--cream); }
+    .revenue-math .eyebrow { color: var(--clay-light); }
+    .revenue-math h2 { color: var(--cream); margin: 1.25rem 0 0.75rem; }
+    .revenue-math-intro { opacity: 0.6; max-width: 560px; font-size: 0.95rem; line-height: 1.8; margin-bottom: 3.5rem; }
+    .math-display {
+      border: 1px solid rgba(247,242,233,0.1);
+      border-radius: 2px; padding: 3rem;
+      margin-bottom: 2.5rem;
+      background: rgba(255,255,255,0.03);
+    }
+    .math-equation {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 2.5vw, 1.9rem); font-weight: 300;
+      color: rgba(247,242,233,0.75); margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .math-equation span { color: var(--clay-light); }
+    .math-equals {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 300;
+      color: var(--cream); line-height: 1;
+    }
+    .math-context {
+      font-size: 0.78rem; opacity: 0.4; margin-top: 0.5rem; letter-spacing: 0.04em;
+    }
+    .math-implications {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+    }
+    .math-implication {
+      padding: 2rem 1.75rem;
+      border: 1px solid rgba(247,242,233,0.08);
+      border-radius: 2px;
+    }
+    .math-implication-stat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 300;
+      color: var(--clay-light); line-height: 1; margin-bottom: 0.5rem;
+    }
+    .math-implication p { font-size: 0.84rem; opacity: 0.55; line-height: 1.65; }
+
+    /* =========================================================
+       SERVICES OVERVIEW
+       ========================================================= */
+    .services-overview { background: var(--parchment); }
+    .services-header { max-width: 640px; margin-bottom: 4rem; }
+    .services-header h2 { margin: 1.25rem 0 1rem; }
+    .services-header p { font-size: 0.95rem; line-height: 1.8; opacity: 0.65; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .service-card {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 2px; padding: 2.5rem 2.25rem;
+      display: flex; flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .service-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300;
+      color: var(--putty); line-height: 1; margin-bottom: 1.5rem;
+    }
+    .service-card h3 { font-size: 1.25rem; margin-bottom: 0.85rem; }
+    .service-card p { font-size: 0.88rem; line-height: 1.78; opacity: 0.68; flex: 1; margin-bottom: 1.75rem; }
+    .service-card-outcome {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--clay);
+      padding-top: 1.5rem; border-top: 1px solid var(--border);
+    }
+
+    /* =========================================================
+       HOW IT WORKS OVERVIEW
+       ========================================================= */
+    .how-overview { background: var(--cream); }
+    .how-overview-header { max-width: 600px; margin-bottom: 4.5rem; }
+    .how-overview-header h2 { margin: 1.25rem 0 1rem; }
+    .how-overview-header p { font-size: 0.95rem; line-height: 1.8; opacity: 0.65; }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 3rem; position: relative;
+    }
+    .steps-grid::before {
+      content: ''; position: absolute;
+      top: 14px; left: 12%; right: 12%;
+      height: 1px; background: var(--border);
+    }
+    .step-dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid var(--putty); background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.75rem; position: relative; z-index: 1;
+    }
+    .step-dot-inner {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--clay);
+    }
+    .step h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .step p { font-size: 0.88rem; line-height: 1.78; opacity: 0.65; }
+
+    /* =========================================================
+       IDEAL CLIENTS
+       ========================================================= */
+    .ideal-clients { background: var(--parchment); }
+    .clients-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .clients-content h2 { margin: 1.25rem 0 1.25rem; }
+    .clients-content > p { font-size: 0.95rem; line-height: 1.82; opacity: 0.68; }
+    .clients-tags { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 2rem; }
+    .client-tag {
+      font-size: 0.76rem; font-weight: 400; letter-spacing: 0.04em;
+      color: var(--espresso); opacity: 0.72;
+      padding: 0.5rem 1.1rem; border: 1px solid var(--putty);
+      border-radius: 40px; background: var(--cream);
+      transition: border-color 0.2s;
+    }
+    .client-tag:hover { border-color: var(--clay); opacity: 1; }
+    .clients-quote-block {
+      border-left: 1px solid var(--putty);
+      padding-left: 3rem;
+    }
+    .clients-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.5; color: var(--espresso); opacity: 0.82;
+    }
+    .clients-attr {
+      margin-top: 1.5rem; font-size: 0.76rem;
+      opacity: 0.42; letter-spacing: 0.05em;
+    }
+
+    /* =========================================================
+       ABOUT PREVIEW
+       ========================================================= */
+    .about-preview { background: var(--cream); }
+    .about-preview-inner {
+      display: grid; grid-template-columns: 5fr 6fr;
+      gap: 5rem; align-items: center;
+    }
+    .about-image-wrap {
+      aspect-ratio: 3/4; background: var(--parchment);
+      border-radius: 2px; position: relative;
+      overflow: hidden; max-height: 500px;
+    }
+    .about-image-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(150deg, var(--sage-muted) 0%, var(--putty) 50%, var(--clay-light) 100%);
+      opacity: 0.3;
+    }
+    .about-image-label {
+      position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.82rem; font-style: italic;
+      color: var(--espresso); opacity: 0.55; letter-spacing: 0.04em;
+    }
+    .about-content h2 { margin: 1.25rem 0 1.5rem; }
+    .about-content p { font-size: 0.95rem; line-height: 1.88; opacity: 0.7; margin-bottom: 1.25rem; }
+
+    /* =========================================================
+       FINAL CTA
+       ========================================================= */
+    .final-cta {
+      background: var(--forest); color: var(--cream);
+      text-align: center; padding: 9rem 4rem;
+    }
+    .final-cta .eyebrow { color: var(--sage-muted); margin-bottom: 1.5rem; }
+    .final-cta h2 {
+      color: var(--cream);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      max-width: 680px; margin: 0 auto 1.5rem;
+    }
+    .final-cta > p {
+      opacity: 0.55; max-width: 480px;
+      margin: 0 auto 3rem; font-size: 0.95rem; line-height: 1.8;
+    }
+    .final-cta-note { margin-top: 2rem; font-size: 0.72rem; opacity: 0.3; letter-spacing: 0.06em; }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer { background: var(--espresso); color: var(--cream); padding: 3rem 0; }
+    .footer-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 400;
+    }
+    .footer-logo span { color: var(--clay-light); font-style: italic; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a {
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--cream); opacity: 0.35; text-decoration: none;
+      cursor: pointer; transition: opacity 0.2s;
+    }
+    .footer-links a:hover { opacity: 0.8; }
+    .footer-copy { font-size: 0.7rem; opacity: 0.28; }
+
+    /* =========================================================
+       SERVICES PAGE
+       ========================================================= */
+    .page-hero {
+      background: var(--parchment);
+      padding: 10rem 0 6rem;
+    }
+    .page-hero h1 { margin: 1.25rem 0 1.25rem; max-width: 680px; }
+    .page-hero p { max-width: 560px; font-size: 1rem; line-height: 1.82; opacity: 0.68; }
+
+    .service-block {
+      padding: 6rem 0;
+      display: grid; grid-template-columns: 220px 1fr;
+      gap: 5rem; align-items: start;
+      border-bottom: 1px solid var(--border);
+    }
+    .service-block:last-child { border-bottom: none; }
+    .service-block-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem; font-weight: 300;
+      color: var(--putty); line-height: 0.9;
+      padding-top: 0.5rem;
+    }
+    .service-block-content h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 1.25rem; }
+    .service-block-content > p {
+      font-size: 1rem; line-height: 1.82; opacity: 0.68;
+      margin-bottom: 2rem; max-width: 580px;
+    }
+    .includes-label {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; opacity: 0.38; margin-bottom: 0.85rem;
+    }
+    .include-item {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      padding: 0.7rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.88rem; opacity: 0.73; line-height: 1.55;
+    }
+    .include-item::before { content: '—'; color: var(--clay); flex-shrink: 0; margin-top: 0.05rem; }
+    .outcome-block {
+      margin-top: 2.25rem; padding: 1.5rem 2rem;
+      background: var(--parchment); border-left: 2px solid var(--clay);
+    }
+    .outcome-label {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--clay); margin-bottom: 0.45rem;
+    }
+    .outcome-block p { font-size: 0.9rem; line-height: 1.72; opacity: 0.72; }
+
+    /* =========================================================
+       HOW IT WORKS PAGE
+       ========================================================= */
+    .phase-section { padding: 0; }
+    .phase-block {
+      padding: 6rem 0; display: grid;
+      grid-template-columns: 260px 1fr; gap: 5rem;
+      align-items: start; border-bottom: 1px solid var(--border);
+    }
+    .phase-block:last-child { border-bottom: none; }
+    .phase-left { position: sticky; top: 8rem; }
+    .phase-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7rem; font-weight: 300;
+      color: var(--parchment); line-height: 0.85; margin-bottom: 0.5rem;
+    }
+    .phase-num-dark { color: var(--putty) !important; }
+    .phase-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-weight: 400; color: var(--espresso);
+    }
+    .phase-right h3 { font-size: 1.6rem; margin-bottom: 1.25rem; }
+    .phase-right > p { font-size: 1rem; line-height: 1.85; opacity: 0.68; max-width: 580px; margin-bottom: 1.5rem; }
+    .phase-details { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+    .phase-detail { background: var(--parchment); padding: 1.5rem; border-radius: 2px; }
+    .phase-detail-label {
+      font-size: 0.66rem; font-weight: 500; letter-spacing: 0.13em;
+      text-transform: uppercase; color: var(--stone); margin-bottom: 0.45rem;
+    }
+    .phase-detail p { font-size: 0.86rem; line-height: 1.65; opacity: 0.72; }
+
+    /* =========================================================
+       ABOUT PAGE
+       ========================================================= */
+    .about-story { background: var(--cream); }
+    .about-story-inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 7rem; align-items: start; }
+    .about-sticky { position: sticky; top: 8rem; }
+    .about-sticky h2 { margin: 1.25rem 0 1rem; }
+    .about-sticky p { font-size: 0.88rem; line-height: 1.78; opacity: 0.55; }
+    .about-story-content p { font-size: 1rem; line-height: 1.9; opacity: 0.72; margin-bottom: 1.5rem; }
+    .about-pullquote {
+      margin: 2.5rem 0; padding: 2rem 0 2rem 2rem;
+      border-left: 1px solid var(--putty);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; font-style: italic;
+      line-height: 1.5; color: var(--espresso); opacity: 0.78;
+    }
+
+    .values-section { background: var(--parchment); }
+    .values-section h2 { max-width: 500px; margin: 1.25rem 0 3rem; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .value-card {
+      background: var(--cream); padding: 2.5rem 2rem; border-radius: 2px;
+      border: 1px solid var(--border);
+    }
+    .value-marker { width: 32px; height: 1px; background: var(--clay); margin-bottom: 1.5rem; }
+    .value-card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .value-card p { font-size: 0.86rem; line-height: 1.75; opacity: 0.64; }
+
+    /* =========================================================
+       BOOK PAGE
+       ========================================================= */
+    .book-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .book-context h2 { margin: 1.25rem 0 1.5rem; }
+    .book-context > p { font-size: 1rem; line-height: 1.85; opacity: 0.68; margin-bottom: 1.75rem; }
+    .expect-list { margin-top: 2.5rem; }
+    .expect-item {
+      display: flex; gap: 1.25rem;
+      padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+    }
+    .expect-item:first-child { border-top: 1px solid var(--border); }
+    .expect-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; color: var(--clay);
+      line-height: 1; min-width: 2rem; padding-top: 0.1rem;
+    }
+    .expect-content strong { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .expect-content p { font-size: 0.82rem; opacity: 0.58; line-height: 1.62; }
+
+    .book-form-wrap {
+      background: var(--warm-white); border: 1px solid var(--border);
+      border-radius: 2px; padding: 3rem;
+    }
+    .book-form-wrap h3 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+    .book-form-wrap > p { font-size: 0.86rem; opacity: 0.55; margin-bottom: 2rem; line-height: 1.65; }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-label {
+      display: block; font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.45; margin-bottom: 0.4rem;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; background: var(--cream);
+      border: 1px solid var(--border); border-radius: 1px;
+      padding: 0.82rem 1rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; color: var(--espresso);
+      outline: none; transition: border-color 0.2s; appearance: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--clay); }
+    .form-textarea { resize: vertical; min-height: 95px; line-height: 1.6; }
+    .form-submit {
+      width: 100%; background: var(--espresso); color: var(--cream);
+      border: none; padding: 1.1rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.76rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer; border-radius: 1px;
+      transition: background 0.2s; margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: var(--clay); }
+    .form-note { font-size: 0.72rem; opacity: 0.38; margin-top: 0.75rem; text-align: center; }
+
+    /* =========================================================
+       INSIGHTS PAGE
+       ========================================================= */
+    .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+    .insight-card {
+      background: var(--parchment); border-radius: 2px; padding: 2.5rem 2rem;
+      border: 1px solid var(--border); opacity: 0.6;
+    }
+    .insight-tag { font-size: 0.66rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clay); margin-bottom: 1rem; }
+    .insight-card h3 { font-size: 1.2rem; line-height: 1.3; margin-bottom: 0.75rem; }
+    .insight-card p { font-size: 0.84rem; line-height: 1.72; opacity: 0.65; }
+    .insights-coming { font-size: 0.82rem; opacity: 0.42; margin-top: 3rem; letter-spacing: 0.04em; }
+
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
+    .reveal {
+      opacity: 0; transform: translateY(26px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr; padding: 8rem 3rem 4rem; gap: 3rem; }
+      .hero-visual { height: 420px; }
+      .cost-cards { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .steps-grid::before { display: none; }
+      .clients-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-preview-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .service-block { grid-template-columns: 1fr; gap: 2rem; }
+      .phase-block { grid-template-columns: 1fr; gap: 2rem; }
+      .phase-left { position: static; }
+      .about-story-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-sticky { position: static; }
+      .book-inner { grid-template-columns: 1fr; }
+      .math-implications { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .insights-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 1.5rem; }
+      .nav-inner { padding: 1rem 1.5rem; }
+      .nav-links, .nav-cta-wrap { display: none; }
+      .nav-hamburger { display: flex; }
+      .cost-cards { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .insights-grid { grid-template-columns: 1fr; }
+      .phase-details { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .final-cta { padding: 6rem 1.5rem; }
+      .quiet-cost-header { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .math-display { padding: 2rem 1.5rem; }
+      .clients-quote-block { padding-left: 1.5rem; }
+    }
+  
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; position: fixed; top: 56px; left: 0; right: 0;
+        flex-direction: column; background: var(--white, #FEFDFB);
+        padding: 1.5rem 3.5rem 2rem; gap: 1.2rem;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 99;
+      }
+      .nav-links.open,
+      .nav-links.mobile-open { display: flex; }
+      .nav-hamburger { display: flex !important; }
+      .nav-cta-wrap { display: none; }
+    }
+  
+    /* =========================================================
+       INTERACTIVE CALCULATOR
+       ========================================================= */
+    .calc-input-label {
+      display: block; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--clay-light); margin-bottom: 0.55rem;
+    }
+    .calc-input-row {
+      display: flex; align-items: center;
+      border-bottom: 1px solid rgba(247,242,233,0.25);
+      padding-bottom: 0.3rem; gap: 0.4rem;
+    }
+    .calc-dollar, .calc-per {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 300;
+      color: rgba(247,242,233,0.5);
+    }
+    .calc-number-input {
+      background: transparent; border: none; outline: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300;
+      color: var(--cream); width: 140px;
+      -moz-appearance: textfield;
+    }
+    .calc-number-input::-webkit-inner-spin-button,
+    .calc-number-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    .freq-pill {
+      font-size: 0.68rem; padding: 0.3rem 0.7rem;
+      border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
+      color: rgba(255,255,255,0.45); cursor: pointer;
+      transition: all 0.2s; background: transparent;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .freq-pill:hover { border-color: var(--sage); color: var(--sage); }
+    .freq-pill.active { border-color: var(--sage); color: var(--sage); }
+    .calc-eq-parts { display: flex; align-items: center; flex-wrap: wrap; gap: 0.2rem; }
+    .eq-var {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: var(--clay-light);
+    }
+    .calc-outputs {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-top: 2rem;
+      padding-top: 2rem; border-top: 1px solid rgba(247,242,233,0.1);
+    }
+    .calc-output-item { display: flex; flex-direction: column; gap: 0.3rem; }
+    .calc-output-label {
+      font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--clay-light); font-weight: 500;
+    }
+    .calc-output-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 300;
+      color: var(--cream); line-height: 1;
+    }
+    .calc-output-note { font-size: 0.75rem; opacity: 0.45; line-height: 1.5; }
+    @media (max-width: 600px) {
+      .calc-outputs { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo" data-nav="home"><em>Bliss</em> <span>by Numbers</span></span>
+    <ul class="nav-links" id="navMenu">
+      <li><a data-nav="services">Services</a></li>
+      <li><a data-nav="hiw">How It Works</a></li>
+      <li><a data-nav="about">About</a></li>
+    </ul>
+    <span class="nav-cta-wrap">
+      <span class="nav-cta" data-nav="book">Book a Free Practice Audit</span>
+    </span>
+    <button class="nav-hamburger" id="navHam" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HOME PAGE
+     ============================================================ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section style="background: var(--cream);">
+    <div class="hero">
+      <div class="hero-content">
+        <span class="eyebrow hero-eyebrow">Revenue systems for wellness and service practices</span>
+        <h1 class="hero-headline">
+          More bookings. Better follow-through. Less admin.
+        </h1>
+        <p class="hero-subhead">
+          We help practices stop losing revenue through missed inquiries, rebooking gaps, no-show leakage, and inconsistent follow-up — with simple systems that run quietly in the background.
+        </p>
+        <div class="hero-actions">
+          <span class="btn btn-dark" data-nav="book">Book a Free Practice Audit</span>
+          <span class="btn btn-ghost" data-nav="quiet-section">See What We Fix</span>
+        </div>
+        <p style="margin-top:1.1rem;font-size:0.8rem;opacity:0.5;letter-spacing:0.03em;">Free for the first 10 practices this month. You'll leave with clear findings whether we work together or not.</p>
+      </div>
+      <div class="hero-visual" id="heroVisual">
+        <div class="hero-visual-inner" id="heroCanvas"></div>
+        <div class="anim-calm-ring" id="calmRing">
+          <div class="anim-calm-cta">
+            <div class="anim-calm-eyebrow">Follow-up handled</div>
+            <div class="anim-calm-headline">This is your practice when follow-up runs itself.</div>
+            <div class="anim-calm-divider"></div>
+            <span class="btn btn-dark anim-calm-btn" data-nav="book">Book a Free Practice Audit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPATHY -->
+  <section class="section empathy">
+    <div class="container">
+      <div class="empathy-inner reveal">
+        <span class="eyebrow">The reality of running a practice</span>
+        <h2 class="empathy-headline">You did not build your practice to spend your time chasing missed calls, follow-ups, and rebooking reminders.</h2>
+        <div class="empathy-body">
+          <p>But when those systems are inconsistent, the business quietly starts losing money.</p>
+          <p>A missed inquiry. A no-show with no recovery. A patient who meant to come back and never did. None of it looks dramatic in the moment. Together, it adds up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIET COST -->
+  <section class="section quiet-cost" id="quiet-section">
+    <div class="container">
+      <div class="quiet-cost-header">
+        <div class="reveal">
+          <span class="eyebrow">Where revenue quietly leaves</span>
+          <h2 style="margin: 1.25rem 0 0;">Six places revenue quietly slips through the cracks.</h2>
+        </div>
+        <p class="quiet-cost-intro reveal reveal-delay-1">
+          Each of these looks small in isolation. Together, they represent revenue that leaves quietly — not because your patients don't want care, but because the path back gets interrupted.
+        </p>
+      </div>
+      <div class="cost-cards">
+        <div class="cost-card reveal">
+          <div class="cost-card-label">Missed Inquiries</div>
+          <h3>The call that never got returned.</h3>
+          <p>A new patient reached out. Nobody got back to them in time. They booked somewhere else.</p>
+        </div>
+        <div class="cost-card reveal reveal-delay-1">
+          <div class="cost-card-label">Rebooking Gaps</div>
+          <h3>The patient who meant to come back.</h3>
+          <p>Great session. Meant to rebook. Nobody reminded them. Two months later, they're gone.</p>
+        </div>
+        <div class="cost-card reveal reveal-delay-2">
+          <div class="cost-card-label">No-Show Leakage</div>
+          <h3>The no-show nobody followed up on.</h3>
+          <p>They missed their appointment. No one reached out. The revenue — and the relationship — just disappeared.</p>
+        </div>
+        <div class="cost-card reveal">
+          <div class="cost-card-label">Dormant Leads</div>
+          <h3>Interest that went cold.</h3>
+          <p>A warm inquiry, a consultation booked, a new patient form filled out — and then nothing. Without a structured follow-through, interest evaporates.</p>
+        </div>
+        <div class="cost-card reveal reveal-delay-1">
+          <div class="cost-card-label">Software Waste</div>
+          <h3>Tools that don't earn their cost.</h3>
+          <p>Most practices are paying for scheduling, CRM, and communication software they're using at a fraction of capacity. The cost stays. The benefit doesn't materialize.</p>
+        </div>
+        <div class="cost-card reveal reveal-delay-2">
+          <div class="cost-card-label">Operational Drag</div>
+          <h3>The admin that never ends.</h3>
+          <p>When systems are fragmented, the practitioner absorbs the friction. That cognitive weight costs time, energy, and often, the emotional bandwidth to do excellent clinical work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVENUE MATH / CALCULATOR -->
+  <section class="section revenue-math">
+    <div class="container">
+      <span class="eyebrow">Your numbers</span>
+      <h2>What it's actually costing you — in your numbers, not ours.</h2>
+      <p class="revenue-math-intro">
+        Most practices have never calculated what inconsistent follow-up is actually costing them. Enter your numbers and see.
+      </p>
+      <div class="math-display reveal">
+
+        <!-- Inputs -->
+        <div class="calc-input-wrap" style="display:flex;gap:2.5rem;flex-wrap:wrap;align-items:flex-end;margin-bottom:2.5rem;">
+          <div>
+            <label class="calc-input-label" for="sessionRateInput">Average session rate</label>
+            <div class="calc-input-row">
+              <span class="calc-dollar">$</span>
+              <input type="number" id="sessionRateInput" class="calc-number-input"
+                value="200" min="25" max="5000" step="5"
+                autocomplete="off" inputmode="numeric">
+            </div>
+          </div>
+          <div>
+            <label class="calc-input-label" for="visitFreqInput">Average visits per year</label>
+            <div class="calc-input-row">
+              <input type="number" id="visitFreqInput" class="calc-number-input"
+                value="18" min="1" max="200" step="1"
+                autocomplete="off" inputmode="numeric" style="width:120px;">
+              <span class="calc-per">/ yr</span>
+            </div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.75rem;flex-wrap:wrap;">
+              <span class="freq-pill" data-freq="50">Weekly ≈ 50</span>
+              <span class="freq-pill" data-freq="26">Biweekly ≈ 26</span>
+              <span class="freq-pill" data-freq="12">Monthly ≈ 12</span>
+              <span class="freq-pill" data-freq="4">Quarterly ≈ 4</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Equation -->
+        <div class="math-equation">
+          <div class="calc-eq-parts">
+            <span class="eq-var" id="eqRate">$200</span>
+            &nbsp;×&nbsp;
+            <span class="eq-var" id="eqFreq">18</span> visits/yr
+            &nbsp;×&nbsp; 3 year relationship
+          </div>
+        </div>
+
+        <!-- Outputs -->
+        <div class="calc-outputs">
+          <div class="calc-output-item">
+            <span class="calc-output-label">Lifetime value per patient</span>
+            <span class="calc-output-value" id="calcLTV">$10,800</span>
+            <span class="calc-output-note">At modest visit frequency over 3 years</span>
+          </div>
+          <div class="calc-output-item">
+            <span class="calc-output-label">Annual revenue at risk</span>
+            <span class="calc-output-value" id="calcAnnualRisk">$162K</span>
+            <span class="calc-output-note">Estimated across patients lost without follow-up</span>
+          </div>
+          <div class="calc-output-item">
+            <span class="calc-output-label">Monthly opportunity</span>
+            <span class="calc-output-value" id="calcMonthlyLoss">$13.5K</span>
+            <span class="calc-output-note">Recoverable with consistent follow-up</span>
+          </div>
+          <div class="calc-output-item" style="display:flex;flex-direction:column;justify-content:flex-end;">
+            <span class="btn btn-clay" data-nav="book" style="align-self:flex-start;margin-top:auto;">Book a Free Practice Audit</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES OVERVIEW -->
+  <section class="section services-overview">
+    <div class="container">
+      <div class="services-header reveal">
+        <span class="eyebrow">What we do</span>
+        <h2>What we actually do.</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-card-num">01</div>
+          <h3>Audit the gaps.</h3>
+          <p>We review inquiry response, booking flow, rebooking, no-show recovery, and software usage to find where revenue is being lost.</p>
+          <div class="service-card-outcome">Outcome: A clear picture of what to fix first</div>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-card-num">02</div>
+          <h3>Build the fixes.</h3>
+          <p>We set up practical systems for follow-up, reminders, and recovery using the tools you already have where possible.</p>
+          <div class="service-card-outcome">Outcome: Set up in a week, running without you</div>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-card-num">03</div>
+          <h3>Refine over time.</h3>
+          <p>For ongoing clients, we review performance and improve the system as the practice grows. Monthly. Practical. No unnecessary complexity.</p>
+          <div class="service-card-outcome">Outcome: Steady, compounding improvement</div>
+        </div>
+      </div>
+      <div style="margin-top: 3rem; text-align: center;">
+        <span class="btn btn-dark" data-nav="services">Explore the Services</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS OVERVIEW -->
+  <section class="section how-overview">
+    <div class="container">
+      <div class="how-overview-header reveal">
+        <span class="eyebrow">The process</span>
+        <h2>How it works.</h2>
+        <p>Three steps. No jargon. No onboarding burden.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step reveal">
+          <div class="step-dot"><div class="step-dot-inner"></div></div>
+          <h3>We review your current workflow.</h3>
+          <p>A short call and a look at how inquiries, bookings, and follow-up currently happen.</p>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-dot"><div class="step-dot-inner"></div></div>
+          <h3>We identify the leaks.</h3>
+          <p>You get a clear picture of where patients are slipping through and what those gaps may be costing.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-dot"><div class="step-dot-inner"></div></div>
+          <h3>We build the fix.</h3>
+          <p>We install simple follow-up systems that fit your practice and reduce the admin burden.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEAL CLIENTS -->
+  <section class="section ideal-clients">
+    <div class="container">
+      <div class="clients-inner">
+        <div class="clients-content reveal">
+          <span class="eyebrow">Who this is for</span>
+          <h2>Best fit for practices that already deliver a strong patient experience — but know the back end is inconsistent.</h2>
+          <p>The clinical work is good. The follow-up isn't. Revenue is leaving quietly, not visibly. That's what we fix.</p>
+          <div class="clients-tags">
+            <span class="client-tag">Functional Medicine</span>
+            <span class="client-tag">Naturopathic Practices</span>
+            <span class="client-tag">Integrative Health</span>
+            <span class="client-tag">Holistic Practitioners</span>
+            <span class="client-tag">Wellness Providers</span>
+            <span class="client-tag">Acupuncture & TCM</span>
+            <span class="client-tag">Health Coaching</span>
+            <span class="client-tag">Service Businesses</span>
+          </div>
+        </div>
+        <div class="clients-quote-block reveal reveal-delay-1">
+          <p class="clients-quote">
+            "Your practice should feel as good behind the scenes as it does for your patients."
+          </p>
+          <p class="clients-attr">— The Bliss by Numbers thesis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section class="section about-preview">
+    <div class="container">
+      <div class="about-preview-inner">
+        <div class="about-image-wrap reveal">
+          <div class="about-image-gradient"></div>
+          <div class="about-image-label">Founder-led. Strategically grounded. Commercially sharp.</div>
+        </div>
+        <div class="about-content reveal reveal-delay-1">
+          <span class="eyebrow">About Bliss by Numbers</span>
+          <h2>Built from the belief that operational clarity is a form of care.</h2>
+          <p>Bliss by Numbers is a founder-led consultancy focused on helping care-based practices improve retention, follow-through, and operational efficiency without adding unnecessary complexity.</p>
+          <p>Most practitioners were never taught to think about patient lifetime value, rebooking rates, or what no-shows are actually costing them. They were trained to help people — which they do, well. We handle the rest.</p>
+          <p>This isn't marketing or another agency promising transformation. It's practical infrastructure for practices ready to run as well as they serve.</p>
+          <div style="margin-top: 2.5rem; display: flex; gap: 2rem; align-items: center;">
+            <span class="btn btn-dark" data-nav="about">Read Our Story</span>
+            <span class="btn btn-ghost" data-nav="book">Book a Free Practice Audit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <span class="eyebrow">Take the first step</span>
+    <h2 style="font-family:'Plus Jakarta Sans','DM Sans',sans-serif;font-weight:800;letter-spacing:-0.02em;">Ready to see where your practice is losing revenue?</h2>
+    <p>In one focused audit, we'll show you where follow-up is breaking down and what to fix first.</p>
+    <span class="btn btn-clay" data-nav="book">Book a Free Practice Audit</span>
+    <p class="final-cta-note">Free. 30 minutes. 10 spots this month.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo"><em>Bliss</em> <span>by Numbers</span></div>
+        <ul class="footer-links">
+          <li><a data-nav="services">Services</a></li>
+          <li><a data-nav="hiw">How It Works</a></li>
+          <li><a data-nav="about">About</a></li>
+          <li><a data-nav="book">Book a Free Practice Audit</a></li>
+        </ul>
+        <span class="footer-copy">© 2026 Bliss by Numbers. All rights reserved. &nbsp;·&nbsp; <a href='mailto:nidhi@nidhihanda.com' style='color:inherit;opacity:0.6;text-decoration:none'>nidhi@nidhihanda.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-home -->
+
+<!-- ============================================================
+     SERVICES PAGE
+     ============================================================ -->
+<div id="page-services" class="page">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Services</span>
+      <h1>Revenue clarity and operational calm, in three engagements.</h1>
+      <p>Every service is designed around a single belief: that a more organized practice is a more profitable one — and that getting there shouldn't require another layer of overwhelm.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="service-block reveal">
+        <div class="service-block-num">01</div>
+        <div class="service-block-content">
+          <span class="eyebrow">Where we begin</span>
+          <h2>Practice Audit</h2>
+          <p>Before anything else, you need to know where the leaks are. The Practice Audit is a structured, strategic review of how revenue moves through your business — and where it quietly stops. It's diagnostic, not prescriptive. It surfaces what's actually happening, so that every decision that follows is grounded in reality.</p>
+          <div class="service-includes">
+            <div class="includes-label">What's reviewed</div>
+            <div class="include-item">Inquiry flow and first-response timing — where potential patients arrive and whether they're met</div>
+            <div class="include-item">Conversion friction — the points where interest slows or stops before becoming a booked appointment</div>
+            <div class="include-item">Rebooking and retention gaps — how patients move through the care cycle and where the relationship ends prematurely</div>
+            <div class="include-item">No-show and cancellation recovery — what happens after a missed appointment, and whether revenue is being recovered</div>
+            <div class="include-item">Software utilization audit — which tools are being paid for, which are being used, and what the gap is costing</div>
+            <div class="include-item">Estimated revenue leakage — a clear, practice-specific picture of what the gaps are costing on an annual basis</div>
+          </div>
+          <div class="outcome-block">
+            <div class="outcome-label">What you walk away with</div>
+            <p>A clear, honest picture of where your practice is losing revenue — prioritized by impact, with a defined path to recovery. Not a generic report. A specific diagnosis of your business.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-block reveal">
+        <div class="service-block-num">02</div>
+        <div class="service-block-content">
+          <span class="eyebrow">Where we build</span>
+          <h2>Follow-Through Setup</h2>
+          <p>The Audit tells you where the gaps are. Follow-Through Setup closes them. This is where elegant, practice-appropriate systems are designed and installed — for the specific points where your business was quietly breaking down. The goal isn't to automate everything. It's to ensure that the right things happen consistently, without requiring your constant manual intervention.</p>
+          <div class="service-includes">
+            <div class="includes-label">What's included</div>
+            <div class="include-item">Inquiry response system — so that new patient interest is met promptly and consistently, within the conversion window that matters</div>
+            <div class="include-item">Lead follow-up flows — structured touchpoints for prospective patients who haven't converted, without being intrusive</div>
+            <div class="include-item">Rebooking and retention sequences — gentle, well-timed reminders that make returning feel easy and natural</div>
+            <div class="include-item">No-show recovery protocols — a defined process for reaching out, recovering the relationship, and rescheduling with care</div>
+            <div class="include-item">Internal tracking and visibility — clean, simple ways to see what's happening in your business without building a second job</div>
+          </div>
+          <div class="outcome-block">
+            <div class="outcome-label">What changes</div>
+            <p>More inquiries convert. More patients return. Fewer appointments are lost without recovery. The administrative weight you've been quietly absorbing starts to lift — and the business begins to feel like it's working with you, not against you.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-block reveal">
+        <div class="service-block-num">03</div>
+        <div class="service-block-content">
+          <span class="eyebrow">Where we sustain</span>
+          <h2>Ongoing Optimization</h2>
+          <p>Practices grow and shift. Systems need to be refined. Ongoing Optimization is for practices that want a consistent strategic partner — someone who knows the business, reviews what's working, and continues to improve the architecture over time. This isn't a retainer for its own sake. It's continued partnership for practices that have seen what's possible and want to keep building.</p>
+          <div class="service-includes">
+            <div class="includes-label">What's included</div>
+            <div class="include-item">Regular operational reviews — structured check-ins to assess what's holding, what needs adjustment, and what's next</div>
+            <div class="include-item">Iterative system improvements — small, compounding refinements that accumulate into meaningful operational change over time</div>
+            <div class="include-item">Revenue tracking and reporting — clean, clear visibility into how the business is performing, without overwhelming dashboards</div>
+            <div class="include-item">Strategic support as the practice evolves — new services, new team members, expanded offerings — systems that grow with you</div>
+          </div>
+          <div class="outcome-block">
+            <div class="outcome-label">What it creates</div>
+            <p>A practice that compounds. Where operational improvements layer on each other over time — and the business becomes increasingly steady, financially clear, and spacious to run.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <span class="eyebrow">Ready to begin</span>
+    <h2>Start with the Audit.</h2>
+    <p>Everything begins with understanding your practice clearly. The Practice Audit is the cleanest entry point — and the most honest one.</p>
+    <span class="btn btn-clay" data-nav="book">Book a Free Practice Audit</span>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo"><em>Bliss</em> <span>by Numbers</span></div>
+        <ul class="footer-links">
+          <li><a data-nav="home">Home</a></li>
+          <li><a data-nav="hiw">How It Works</a></li>
+          <li><a data-nav="about">About</a></li>
+          <li><a data-nav="book">Book a Free Practice Audit</a></li>
+        </ul>
+        <span class="footer-copy">© 2026 Bliss by Numbers.</span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-services -->
+
+<!-- ============================================================
+     HOW IT WORKS PAGE
+     ============================================================ -->
+<div id="page-hiw" class="page">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">How It Works</span>
+      <h1>A deliberate process designed for lasting operational clarity.</h1>
+      <p>Every engagement moves through the same careful sequence — diagnosis, design, implementation — because sustainable change requires understanding before action.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container phase-section">
+
+      <div class="phase-block reveal">
+        <div class="phase-left">
+          <div class="phase-num">01</div>
+          <div class="phase-title">Audit</div>
+        </div>
+        <div class="phase-right">
+          <h3>We learn how your practice actually works — not how it's supposed to.</h3>
+          <p>Every engagement begins with a structured diagnostic review of your patient journey. Not a questionnaire you fill out alone — a collaborative process where we examine how revenue moves through your business and where it consistently loses momentum.</p>
+          <p>This phase doesn't make assumptions. It looks at your actual systems, your actual flow, and your actual gaps — and produces a clear, honest picture of where the practice is losing money and why.</p>
+          <div class="phase-details">
+            <div class="phase-detail">
+              <div class="phase-detail-label">What we review</div>
+              <p>Inquiry capture, first-response timing, booking flow, rebooking sequences, no-show protocols, and software utilization — the full patient acquisition and retention journey.</p>
+            </div>
+            <div class="phase-detail">
+              <div class="phase-detail-label">What you receive</div>
+              <p>A clear revenue leak assessment with estimated impact per gap — so every subsequent decision is grounded in real business math, not intuition.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-block reveal">
+        <div class="phase-left">
+          <div class="phase-num">02</div>
+          <div class="phase-title">Design</div>
+        </div>
+        <div class="phase-right">
+          <h3>We prioritize the highest-impact fixes and design an elegant follow-through system.</h3>
+          <p>With the audit complete, we map a system that addresses your specific gaps in the order that matters most. Not every problem needs solving on day one — and the best systems are the ones that are actually sustainable to run.</p>
+          <p>This phase is where strategy becomes architecture. We design the follow-through flows, communication sequences, and internal tracking structures that will replace the inconsistency you've been living with.</p>
+          <div class="phase-details">
+            <div class="phase-detail">
+              <div class="phase-detail-label">How we prioritize</div>
+              <p>By revenue impact, implementation ease, and the specific character of your practice. The fixes that matter most, first — without overbuilding what doesn't need to be complex.</p>
+            </div>
+            <div class="phase-detail">
+              <div class="phase-detail-label">What it looks like</div>
+              <p>A mapped system designed for your tools, your team, and your workflow — not a generic template dropped into your business.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-block reveal">
+        <div class="phase-left">
+          <div class="phase-num">03</div>
+          <div class="phase-title">Implement</div>
+        </div>
+        <div class="phase-right">
+          <h3>We put the systems in place — cleanly, carefully, without adding to your plate.</h3>
+          <p>Implementation is where the design becomes real. We configure, connect, and install — working within your existing tools where possible, recommending better-fit alternatives where necessary.</p>
+          <p>Handoff is deliberate. You understand what's running, why it's running, and what to expect — so the system operates with confidence rather than mystery.</p>
+          <div class="phase-details">
+            <div class="phase-detail">
+              <div class="phase-detail-label">Our approach</div>
+              <p>We configure rather than complicate. The goal is operational clarity, not a new layer of software overhead that creates its own burden.</p>
+            </div>
+            <div class="phase-detail">
+              <div class="phase-detail-label">What changes</div>
+              <p>The invisible admin weight lifts. The systems begin running consistently. Revenue that was previously lost starts recovering. The practice begins to breathe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-block reveal">
+        <div class="phase-left">
+          <div class="phase-num phase-num-dark">04</div>
+          <div class="phase-title">Optimize</div>
+        </div>
+        <div class="phase-right">
+          <h3>For ongoing partners: refinement, review, and continued strategic support.</h3>
+          <p>Practices that choose ongoing optimization have access to continued partnership — regular reviews, iterative improvements, and a strategic perspective on what to build next as the business grows.</p>
+          <p>This is not a retainer for its own sake. It's for practices where the initial work has produced results, and where continued refinement represents a clear return.</p>
+          <div class="phase-details">
+            <div class="phase-detail">
+              <div class="phase-detail-label">What's ongoing</div>
+              <p>Monthly or quarterly reviews. Small but compounding operational improvements. Revenue visibility that improves over time.</p>
+            </div>
+            <div class="phase-detail">
+              <div class="phase-detail-label">The long view</div>
+              <p>A practice that gets incrementally better, more financially clear, and more spacious to run — over months and years, not just weeks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <span class="eyebrow">Begin here</span>
+    <h2>Every engagement begins with the Audit.</h2>
+    <p>It's the most honest way to start — with a clear picture of what's actually happening in your practice before any systems are built.</p>
+    <span class="btn btn-clay" data-nav="book">Book a Free Practice Audit</span>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo"><em>Bliss</em> <span>by Numbers</span></div>
+        <ul class="footer-links">
+          <li><a data-nav="home">Home</a></li>
+          <li><a data-nav="services">Services</a></li>
+          <li><a data-nav="about">About</a></li>
+          <li><a data-nav="book">Book a Free Practice Audit</a></li>
+        </ul>
+        <span class="footer-copy">© 2026 Bliss by Numbers.</span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-hiw -->
+
+<!-- ============================================================
+     ABOUT PAGE
+     ============================================================ -->
+<div id="page-about" class="page">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">About</span>
+      <h1>Built from the belief that operational clarity is a form of care.</h1>
+      <p>Bliss by Numbers exists because exceptional practitioners deserve practices that work as well as they do — and because most of them were never taught the business architecture to make that happen.</p>
+    </div>
+  </section>
+
+  <section class="section about-story">
+    <div class="container">
+      <div class="about-story-inner">
+        <div class="about-sticky reveal">
+          <span class="eyebrow">Our foundation</span>
+          <h2>Why Bliss by Numbers exists.</h2>
+          <p>A more financially clear practice is a more sustainable one. And a more sustainable practice is one that can serve more people, more deeply.</p>
+        </div>
+        <div class="about-story-content reveal reveal-delay-1">
+          <p>There's a particular kind of frustration that lives behind the front desk of a well-run wellness practice — one that rarely gets spoken aloud. The practitioner is skilled. The patients who stay, love it. The work is good. And yet the business quietly underperforms, month after month, for reasons that are hard to name and harder to fix.</p>
+          <p>The problem isn't demand. It's the gap between how the clinical work is delivered and how the business actually functions behind the scenes. A new patient inquiry sits in an inbox for four days. A patient who meant to rebook never gets a reminder. A no-show costs a full session slot and no one follows up. The CRM that was supposed to solve this is billed monthly and barely touched.</p>
+          <div class="about-pullquote">
+            "Most healers were never taught to map client lifetime value, retention economics, or the quiet cost of operational drag."
+          </div>
+          <p>Bliss by Numbers was built to address exactly this. Not with a flood of new marketing tactics, or a stack of software with a steep learning curve — but with strategic, empathetic operational work that surfaces where revenue is quietly leaking and builds the elegant systems to stop it.</p>
+          <p>The work is deliberately founder-led and high-touch. Practices are not interchangeable. What works beautifully for one structure creates friction in another. Every engagement begins with a genuine understanding of how your practice works before a single recommendation is made.</p>
+          <p>The name is intentional on both sides. Bliss is what a well-run practice feels like from the inside — calm, spacious, not held together by sheer force of will. By Numbers is the anchor: measurable, financially grounded, real. The combination is what we build toward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section values-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">What guides the work</span>
+        <h2>The values that shape how we work.</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-marker"></div>
+          <h3>Diagnosis before prescription.</h3>
+          <p>We don't arrive with predetermined solutions. Every engagement begins with a genuine understanding of how your practice works, where it leaks, and what will actually improve it — before any system is designed.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-marker"></div>
+          <h3>Elegant, not excessive.</h3>
+          <p>The best operational systems are the ones that solve the real problem cleanly — without adding complexity, software overhead, or new things to manage. We build what's needed. Not more.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-marker"></div>
+          <h3>Real financial clarity.</h3>
+          <p>We believe practitioners deserve to understand the revenue economics of their own businesses. Not as a stressful exercise in accounting — but as the kind of clarity that produces informed, confident decisions.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-marker"></div>
+          <h3>High-touch, not high-volume.</h3>
+          <p>We work with a deliberately small number of practices at any one time. The quality of the work depends on genuine attention — and genuine attention requires real limits on how many practices we serve simultaneously.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-marker"></div>
+          <h3>Empathy and commercial intelligence.</h3>
+          <p>The best operational work holds both at once — a real understanding of what it means to run a care-based practice, and a clear-eyed view of the business math that makes it sustainable.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-marker"></div>
+          <h3>Compounding improvement.</h3>
+          <p>We are not interested in one-time fixes. The systems we build are designed to hold, to improve over time, and to compound — so that the benefit of the work grows rather than decays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <span class="eyebrow">Let's talk</span>
+    <h2>If this resonates, we'd like to hear about your practice.</h2>
+    <p>The Practice Audit is the cleanest place to begin — a structured review of where your business is losing money, with no pressure and no assumptions.</p>
+    <span class="btn btn-clay" data-nav="book">Book a Free Practice Audit</span>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo"><em>Bliss</em> <span>by Numbers</span></div>
+        <ul class="footer-links">
+          <li><a data-nav="home">Home</a></li>
+          <li><a data-nav="services">Services</a></li>
+          <li><a data-nav="hiw">How It Works</a></li>
+          <li><a data-nav="book">Book a Free Practice Audit</a></li>
+        </ul>
+        <span class="footer-copy">© 2026 Bliss by Numbers.</span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-about -->
+
+<!-- ============================================================
+     BOOK / AUDIT PAGE
+     ============================================================ -->
+<div id="page-book" class="page">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Free Practice Audit</span>
+      <h1>Book a Free Practice Audit.</h1>
+      <p>A strategic review of where your practice may be quietly losing revenue through missed follow-up, rebooking gaps, no-show leakage, and underused systems.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="book-inner">
+
+        <div class="book-context reveal">
+          <span class="eyebrow">What to expect</span>
+          <h2>A clear, honest picture of your practice — in detail.</h2>
+          <p>The Practice Audit is a focused, high-touch engagement designed to give you genuine clarity on where your business is losing money and what to do about it. It is not a generic assessment. It is a practice-specific diagnosis.</p>
+          <p>This audit is selective by design. We accept a small number of engagements at a time to ensure the quality of attention each practice receives.</p>
+
+          <div class="expect-list">
+            <div class="expect-item">
+              <div class="expect-num">1</div>
+              <div class="expect-content">
+                <strong>You submit the intake form</strong>
+                <p>A brief overview of your practice, your current tools, and where you feel the friction — so we arrive prepared, not starting from zero.</p>
+              </div>
+            </div>
+            <div class="expect-item">
+              <div class="expect-num">2</div>
+              <div class="expect-content">
+                <strong>We schedule a scoping call</strong>
+                <p>A 30-minute conversation to understand your practice more deeply and confirm that the audit is the right fit for where you are right now.</p>
+              </div>
+            </div>
+            <div class="expect-item">
+              <div class="expect-num">3</div>
+              <div class="expect-content">
+                <strong>We conduct the audit</strong>
+                <p>A thorough review of your inquiry flow, booking systems, retention patterns, and software — with a clear lens on where revenue is quietly leaking.</p>
+              </div>
+            </div>
+            <div class="expect-item">
+              <div class="expect-num">4</div>
+              <div class="expect-content">
+                <strong>You receive your findings</strong>
+                <p>A clear, written revenue leak assessment — prioritized by impact, with estimated annual cost per gap and a recommended path forward.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="book-form-wrap reveal reveal-delay-1">
+          <h3>Begin here.</h3>
+          <p>Complete this form and we'll be in touch within one business day to confirm next steps.</p>
+
+          <form onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-input" placeholder="First and last name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Practice Name</label>
+              <input type="text" class="form-input" placeholder="Your practice or business name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Website</label>
+              <input type="url" class="form-input" placeholder="https://yourpractice.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Specialty or Focus</label>
+              <select class="form-select" required>
+                <option value="" disabled selected>Select your practice type</option>
+                <option>Functional Medicine</option>
+                <option>Naturopathic Medicine</option>
+                <option>Integrative Health</option>
+                <option>Acupuncture / TCM</option>
+                <option>Health Coaching</option>
+                <option>Wellness / Holistic Practice</option>
+                <option>Physical Therapy / Bodywork</option>
+                <option>Mental Health / Therapy</option>
+                <option>Other Service Business</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current Booking / CRM Tools</label>
+              <input type="text" class="form-input" placeholder="e.g., Jane App, Practice Better, Acuity...">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Where do you feel the most friction?</label>
+              <textarea class="form-textarea" placeholder="Tell us where you feel revenue is slipping, or where the admin burden feels heaviest — even if you can't quite name it yet." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">Submit Intake Form</button>
+            <p class="form-note">We review all submissions personally. You'll hear from us within one business day.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo"><em>Bliss</em> <span>by Numbers</span></div>
+        <ul class="footer-links">
+          <li><a data-nav="home">Home</a></li>
+          <li><a data-nav="services">Services</a></li>
+          <li><a data-nav="hiw">How It Works</a></li>
+          <li><a data-nav="about">About</a></li>
+        </ul>
+        <span class="footer-copy">© 2026 Bliss by Numbers.</span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-book -->
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+// ============================================================
+// PAGE NAVIGATION
+// ============================================================
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    initReveal();
+    if (id === 'home') {
+      // Properly reset and restart animation when returning home
+      setTimeout(function() {
+        var canvas = document.getElementById('heroCanvas');
+        var calmRing = document.getElementById('calmRing');
+        if (canvas) canvas.innerHTML = '';
+        if (calmRing) calmRing.classList.remove('show');
+        var visual = document.getElementById('heroVisual');
+        if (visual) visual.classList.remove('calm');
+        animStarted = false;
+        initHeroAnimation();
+      }, 150);
+    }
+  }
+}
+
+// Mobile menu
+function toggleMobileMenu() {
+  var navMenu = document.getElementById('navMenu');
+  if (navMenu) {
+    navMenu.classList.toggle('open');
+    navMenu.classList.toggle('mobile-open');
+  }
+}
+
+// ============================================================
+// HERO ANIMATION: CHAOS → CALM
+// ============================================================
+let animStarted = false;
+
+const cardData = [
+  // Column 0: Inquiries
+  { label: 'Inquiry',   text: 'New patient form — 3 days, no reply',           type: 'alert',   col: 0, row: 0 },
+  { label: 'Voicemail', text: "Voicemail — wants to book, hasn't heard back", type: 'alert',   col: 0, row: 1 },
+  { label: 'DM',        text: 'Instagram DM — asking about availability',      type: 'alert',   col: 0, row: 2 },
+  { label: 'Referral',  text: 'Referral from Dr. Lee — intake not sent',       type: 'alert',   col: 0, row: 3 },
+  // Column 1: Appointments
+  { label: 'Rebook',    text: 'Emma T. — no appointment after last visit',     type: 'booking', col: 1, row: 0 },
+  { label: 'No-show',   text: 'Marcus L. — no-show, not yet contacted',        type: 'booking', col: 1, row: 1 },
+  { label: 'Overdue',   text: '3 patients overdue for rebook',                 type: 'booking', col: 1, row: 2 },
+  { label: 'Plan',      text: 'Treatment plan incomplete — 2 sessions left',   type: 'booking', col: 1, row: 3 },
+  // Column 2: Follow-Up
+  { label: 'Check-in',  text: 'Post-visit check-in — not sent',               type: 'revenue', col: 2, row: 0 },
+  { label: 'Lapsed',    text: "6 patients haven't been seen in 90+ days",     type: 'revenue', col: 2, row: 1 },
+  { label: 'Review',    text: 'Review request — never went out',               type: 'revenue', col: 2, row: 2 },
+  { label: 'Reactivate',text: 'Reactivation list — 14 patients, untouched',   type: 'revenue', col: 2, row: 3 },
+];
+
+function initHeroAnimation() {
+  const canvas = document.getElementById('heroCanvas');
+  const visual = document.getElementById('heroVisual');
+  const calmRing = document.getElementById('calmRing');
+  if (!canvas || animStarted) return;
+  animStarted = true;
+
+  const cardW = 170;
+  const cardH = 54;
+  const canvasW = visual.offsetWidth || 520;
+  const canvasH = visual.offsetHeight || 560;
+
+  // Organized grid layout
+  const colX = [22, Math.floor(canvasW / 3) + 8, Math.floor((canvasW / 3) * 2) + 8];
+  const headerH = 56;
+  const rowH = 66;
+  const rowY = [0, 1, 2, 3].map(i => headerH + i * rowH);
+
+  // Create card elements in chaos positions
+  const elements = [];
+  cardData.forEach((card, i) => {
+    const el = document.createElement('div');
+    el.className = `anim-card type-${card.type}`;
+    el.style.width = cardW + 'px';
+    el.innerHTML = `
+      <div class="anim-card-label">${card.label}</div>
+      <div class="anim-card-text">${card.text}</div>
+    `;
+
+    // Chaos: random position and rotation
+    const safeX = Math.max(4, Math.random() * (canvasW - cardW - 8));
+    const safeY = Math.max(4, Math.random() * (canvasH - cardH - 8));
+    const rot   = (Math.random() - 0.5) * 28;
+
+    el.style.cssText += `
+      left: ${safeX}px; top: ${safeY}px;
+      transform: rotate(${rot}deg);
+      opacity: 0; transition: none;
+    `;
+
+    canvas.appendChild(el);
+    elements.push({ el, card });
+
+    // Staggered fade-in of chaos cards
+    setTimeout(() => {
+      el.style.transition = 'opacity 0.5s ease';
+      el.style.opacity = '1';
+    }, i * 75);
+  });
+
+  // After chaos settles, begin organizing
+  const chaosDuration = 2200;
+  setTimeout(() => {
+    // Add column headers
+    ['Inquiries', 'Appointments', 'Follow-Up'].forEach((label, i) => {
+      const h = document.createElement('div');
+      h.className = 'anim-col-header';
+      h.style.left = colX[i] + 'px';
+      h.textContent = label;
+      canvas.appendChild(h);
+      setTimeout(() => h.classList.add('show'), i * 200 + 800);
+    });
+
+    // Move each card to its organized position with stagger
+    elements.forEach(({ el, card }, i) => {
+      const targetX = colX[card.col];
+      const targetY = rowY[card.row];
+      setTimeout(() => {
+        el.style.transition = `left 1.3s cubic-bezier(0.25,0.46,0.45,0.94) ${i * 0.04}s,
+                               top  1.3s cubic-bezier(0.25,0.46,0.45,0.94) ${i * 0.04}s,
+                               transform 1.2s ease ${i * 0.04}s,
+                               opacity 0.3s ease`;
+        el.style.left      = targetX + 'px';
+        el.style.top       = targetY + 'px';
+        el.style.transform = 'rotate(0deg)';
+        el.style.opacity   = '1';
+      }, i * 55);
+    });
+
+    // Visual background settles to calm
+    setTimeout(() => {
+      visual.classList.add('calm');
+    }, 600);
+
+    // Calm ring appears
+    setTimeout(() => {
+      calmRing.classList.add('show');
+    }, 2200);
+
+  }, chaosDuration);
+}
+
+
+// ============================================================
+// CALCULATOR
+// ============================================================
+function fmtBig(n) {
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1000)    return '$' + Math.round(n / 1000) + 'K';
+  return '$' + Math.round(n).toLocaleString();
+}
+function fmtLTV(n) {
+  return '$' + Math.round(n).toLocaleString();
+}
+function animateTo(id, target, formatter, duration) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const startVal = parseFloat(el.dataset.raw) || 0;
+  el.dataset.raw = target;
+  const startTime = performance.now();
+  function tick(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = formatter(startVal + (target - startVal) * ease);
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+function updateCalc() {
+  const rateInput = document.getElementById('sessionRateInput');
+  const freqInput = document.getElementById('visitFreqInput');
+  if (!rateInput) return;
+  const r = Math.max(25, Math.min(5000, Number(rateInput.value) || 200));
+  const f = Math.max(1,  Math.min(200,  Number(freqInput ? freqInput.value : 18) || 18));
+  const ltv   = r * f * 3;
+  const arisk = ltv * 15;
+  const mloss = arisk / 12;
+  const eqRate = document.getElementById('eqRate');
+  const eqFreq = document.getElementById('eqFreq');
+  if (eqRate) eqRate.textContent = '$' + r;
+  if (eqFreq) eqFreq.textContent = f;
+  animateTo('calcLTV',         ltv,   fmtLTV, 700);
+  animateTo('calcAnnualRisk',  arisk, fmtBig, 700);
+  animateTo('calcMonthlyLoss', mloss, fmtBig, 700);
+}
+function seedCalcRaw() {
+  ['calcLTV', 'calcAnnualRisk', 'calcMonthlyLoss'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.dataset.raw = '0';
+  });
+}
+function initCalculator() {
+  const rateInput = document.getElementById('sessionRateInput');
+  const freqInput = document.getElementById('visitFreqInput');
+  if (!rateInput) return;
+  seedCalcRaw();
+  updateCalc();
+  rateInput.addEventListener('input',  () => updateCalc());
+  rateInput.addEventListener('change', () => updateCalc());
+  if (freqInput) {
+    freqInput.addEventListener('input',  () => updateCalc());
+    freqInput.addEventListener('change', () => updateCalc());
+  }
+  // Frequency pills
+  document.querySelectorAll('.freq-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const val = Number(pill.getAttribute('data-freq'));
+      if (freqInput && val) {
+        freqInput.value = val;
+        updateCalc();
+        document.querySelectorAll('.freq-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+      }
+    });
+  });
+  // Count-up on scroll into view
+  const calcEl = rateInput.closest('.revenue-math');
+  if (calcEl) {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        seedCalcRaw();
+        updateCalc();
+        obs.disconnect();
+      }
+    }, { threshold: 0.2 });
+    obs.observe(calcEl);
+  }
+}
+
+// ============================================================
+// SCROLL REVEAL
+// ============================================================
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.page.active .reveal').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// ============================================================
+// FORM SUBMISSION (placeholder)
+// ============================================================
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Thank you — we\'ll be in touch soon.';
+  btn.style.background = 'var(--sage)';
+  btn.style.cursor = 'default';
+  e.target.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  initReveal();
+  initCalculator();
+
+  // Start hero animation after brief load
+  setTimeout(initHeroAnimation, 400);
+
+  // ── Page navigation via data-nav attribute (event delegation) ──
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('[data-nav]');
+    if (trigger) {
+      e.preventDefault();
+      var target = trigger.getAttribute('data-nav');
+      // close mobile nav if open
+      var navMenu = document.getElementById('navMenu');
+      if (navMenu) navMenu.classList.remove('open');
+      // Handle in-page scroll targets
+      var scrollTarget = document.getElementById(target);
+      if (scrollTarget) {
+        scrollTarget.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        showPage(target);
+      }
+    }
+  });
+
+  // ── Mobile hamburger ──
+  var ham = document.getElementById('navHam');
+  if (ham) {
+    ham.addEventListener('click', function() {
+      var navMenu = document.getElementById('navMenu');
+      if (navMenu) navMenu.classList.toggle('open');
+    });
+  }
+
+});
+</script>
+
+</body>
+</html>
